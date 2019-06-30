@@ -12,7 +12,7 @@ public class TextFile {
     private File file;
     private List<String> fileContent = new ArrayList<>();
     private List<String> allConcatenatedWords;
-    private int secondLongestIndex = 0;
+   
     
     public TextFile(File file) {
         this.file = file;
@@ -40,14 +40,6 @@ public class TextFile {
 
     public void setAllConcatenatedWords(List<String> allConcatenatedWords) {
         this.allConcatenatedWords = allConcatenatedWords;
-    }
-
-    public int getSecondLongestIndex() {
-        return secondLongestIndex;
-    }
-
-    public void setSecondLongestIndex(int secondLongestIndex) {
-        this.secondLongestIndex = secondLongestIndex;
     }
     
     

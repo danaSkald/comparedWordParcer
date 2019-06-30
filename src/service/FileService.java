@@ -32,16 +32,39 @@ public class FileService {
       List<String> concatWords = choosenFile.getAllConcatenatedWords();
     if(concatWords!=null && !concatWords.isEmpty()){
         Collections.sort(concatWords, new LengthComparator()); //sort from lagest to smallest
-        choosenFile.setSecondLongestIndex(getSecondLongestConcatenatedWordIndex(concatWords, concatWords.get(1).length()));
+        
     }
     }
-      private int getSecondLongestConcatenatedWordIndex(List<String> contentList, int longestLen){
-          for(int i = 0; i<contentList.size(); i++){
-              if(contentList.get(i).length()<longestLen){
-                  return i;
+      public List<String> getSecondLongestConcatenatedWordList(List<String> contentList, int longestLen){
+          int currlen = 0;
+          int middleLen= 0;
+          List<String> secondLongestList = new ArrayList<>();
+          for(String word:contentList){
+              if(word.length()<longestLen){
+                  currlen = word.length();
+                  if(middleLen==0){
+                    middleLen =  currlen; 
+                  }
+                  if(middleLen>currlen){
+                      break;
+                  }
+                  else{
+                     secondLongestList.add(word);
+                  }
               }
           }
-          return 0;
+          return secondLongestList;
+      }
+      public List<String> getLongestConcatenatedWordList(List<String> contentList){
+          List<String> longestList = new ArrayList<>();
+          int len = contentList.get(0).length();
+          for(String word:contentList){
+              if(len> word.length()){
+                  break;
+              }
+              longestList.add(word);
+          }
+          return longestList;
       }
     
     private void addToTrie(String s) {

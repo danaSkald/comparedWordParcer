@@ -71,9 +71,12 @@ public class FileChooserWindow extends Application {
                 if(concatWord!=null){
                     printResults(textArea, "Total concat word count="+concatWord.size());
                     if(concatWord.size()>0){
-                      printResults(textArea, "The longest concatenated word length ="+concatWord.get(1).length()+" value="+concatWord.get(1));  
+                      printResults(textArea, "The longest words:");
+                      printResults(textArea, fileService.getLongestConcatenatedWordList(concatWord));
+                            
                       if(concatWord.size()>1){
-                           printResults(textArea, "The 2nd longest concatenated word ="+concatWord.get(choosedFile.getSecondLongestIndex()).length()+" value="+concatWord.get(choosedFile.getSecondLongestIndex())); 
+                          printResults(textArea, "The 2nd longest words:");
+                           printResults(textArea, fileService.getSecondLongestConcatenatedWordList(concatWord, concatWord.get(0).length())); 
                       }
                       
                     }
@@ -98,7 +101,12 @@ public class FileChooserWindow extends Application {
     private void printResults(TextArea textArea, String text) {
        textArea.appendText(text + "\n");
     }
- 
+  private void printResults(TextArea textArea, List<String> text) {
+      for(String word:text){
+          textArea.appendText(word+ "\n");
+      }
+       
+    }
  
     public static void main(String[] args) {
         Application.launch(args);
